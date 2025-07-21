@@ -145,4 +145,4 @@ vsim -do "run -all" tb_alu
 
 ## 📄 License
 
-This project is licensed under **Analog Devices Inc.** Summer 2025' Digital IC Internship
+This project is licensed under **Analog Devices Inc.** Summer 2025' Digital IC Design Internship
