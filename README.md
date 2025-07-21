@@ -12,8 +12,7 @@
 - [🔧 Operations](#🔧-operations)  
 - [🏗️ Testbench Architectures](#🏗️-testbench-architectures)  
 - [🧪 Test Cases](#🧪-test-cases)  
-- [🛠️ Tools Used](#🛠️-tools-used)  
-- [🚀 Getting Started](#🚀-getting-started)  
+- [🛠️ Tools Used](#🛠️-tools-used)   
 - [📊 Verification Metrics](#📊-verification-metrics)  
 - [🧩 Future Work](#🧩-future-work)  
 - [👤 Author](#👤-author)  
@@ -100,22 +99,6 @@ flowchart LR
 - **Frameworks:** Cocotb (Python), SystemVerilog (UVM‑like)  
 - **Editors:** VS Code, EDA Playground  
 
----
-
-## 🚀 Getting Started
-
-### ▶️ Cocotb Flow
-
-```bash
-pip install cocotb
-make SIM=questa
-```
-
-### ▶️ SystemVerilog Flow
-
-```bash
-vsim -do "run -all" tb_alu
-```
 
 ---
 
