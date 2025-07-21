@@ -63,12 +63,12 @@ flowchart LR
     Python[Test Generator (Python)] --> GPI
     GPI --> Simulator[Verilog DUT]
     Simulator --> GPI
-    GPI --> Python[Self-Checking and Reporting]
+    GPI --> Python[Self-Checker and Report Generator]
 ```
 
-- Uses Python test routines to drive and monitor the Verilog DUT
-- Supports asynchronous reset checks, boundary values, and functional scenarios
-- Generates logs and reports for result tracking
+- Python test routines drive and monitor the Verilog DUT  
+- Supports asynchronous reset, boundary testing, and functional scenarios  
+- Self-checking and logging integrated with Python
 
 ---
 
@@ -103,7 +103,7 @@ flowchart LR
   - SystemVerilog (UVM-like methodology)
 
 - **Development Environments:**  
-  - VS Code  
+  - Visual Studio Code  
   - EDA Playground  
 
 ---
@@ -132,17 +132,21 @@ vsim -do "run -all" tb_alu
 ## 📊 Verification Metrics
 
 - ✅ Error Counter: `0`  
-- ✅ Correct Operations Counter: All Passed  
-- ✅ Boundary Coverage: **100% Achieved**
-- ✅ Code Coverage: **100% Achieved**
+- ✅ Correct Operation Counter: All tests passed  
+- ✅ Boundary Coverage: **100% achieved**
 
 ---
 
 ## 🧩 Future Work
 
-- 🔍 **Add functional coverage** to quantify verification completeness across opcode/input combinations  
-- ✅ **Integrate SystemVerilog assertions** to enforce protocol correctness and catch corner-case bugs early  
-- 📈 Improve scoreboard tracking and automation of pass/fail reporting
+- 🧪 **Functional Coverage:**  
+  Implement covergroups and cross coverage to measure scenario completeness.
+
+- 🔐 **Assertions:**  
+  Add SystemVerilog assertions to validate protocol behavior and detect illegal conditions.
+
+- 🧰 **CI Integration:**  
+  Future support for automated regression and continuous testing.
 
 ---
 
@@ -156,4 +160,4 @@ vsim -do "run -all" tb_alu
 
 ## 📄 License
 
-This project is licensed under ADI Summer Internship
+This project is licensed under Analog Devices Inc, supervision for Summer 2025' Digital IC Design Internship
