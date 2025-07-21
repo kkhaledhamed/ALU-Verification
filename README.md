@@ -7,46 +7,47 @@
 ---
 
 ## 📋 Table of Contents
-- [🎯 Design Specifications](#-design-specifications)
-- [🔧 Operations](#-operations)
-- [🏗️ Testbench Architectures](#-testbench-architectures)
-- [🧪 Test Cases](#-test-cases)
-- [🛠️ Tools Used](#-tools-used)
-- [🚀 Getting Started](#-getting-started)
-- [📊 Verification Metrics](#-verification-metrics)
-- [🧩 Future Work](#-future-work)
-- [👤 Author](#-author)
-- [📄 License](#-license)
+
+- [🎯 Design Specifications](#🎯-design-specifications)  
+- [🔧 Operations](#🔧-operations)  
+- [🏗️ Testbench Architectures](#🏗️-testbench-architectures)  
+- [🧪 Test Cases](#🧪-test-cases)  
+- [🛠️ Tools Used](#🛠️-tools-used)  
+- [🚀 Getting Started](#🚀-getting-started)  
+- [📊 Verification Metrics](#📊-verification-metrics)  
+- [🧩 Future Work](#🧩-future-work)  
+- [👤 Author](#👤-author)  
+- [📄 License](#📄-license)  
 
 ---
 
 ## 🎯 Design Specifications
 
-| Signal   | Description              | Width    |
-|----------|--------------------------|----------|
-| `clk`    | Input clock signal       | 1-bit    |
-| `reset`  | Asynchronous reset       | 1-bit    |
-| `Opcode` | Operation selector       | 2-bit    |
-| `A`      | Input A (2's complement) | 4-bit    |
-| `B`      | Input B (2's complement) | 4-bit    |
-| `C`      | Output (2's complement)  | 5-bit    |
+| Signal   | Description              | Width |
+|----------|--------------------------|:-----:|
+| `clk`    | Input clock signal       | 1-bit |
+| `reset`  | Asynchronous reset       | 1-bit |
+| `Opcode` | Operation selector       | 2-bit |
+| `A`      | Input A (2’s complement) | 4-bit |
+| `B`      | Input B (2’s complement) | 4-bit |
+| `C`      | Output (2’s complement)  | 5-bit |
 
 ---
 
 ## 🔧 Operations
 
-| Opcode | Operation     | Description               |
-|--------|---------------|---------------------------|
-| `00`   | Add           | A + B                     |
-| `01`   | Subtract      | A - B                     |
-| `10`   | Bitwise NOT   | ~A                        |
-| `11`   | Reduction OR  | OR all bits of B (`|B`)   |
+| Opcode | Operation     | Description                |
+|:------:|---------------|----------------------------|
+| `00`   | Add           | A + B                      |
+| `01`   | Subtract      | A – B                      |
+| `10`   | Bitwise NOT   | ~A                         |
+| `11`   | Reduction OR  | OR all bits of B (`|B`)    |
 
 ---
 
 ## 🏗️ Testbench Architectures
 
-### ➤ SystemVerilog Class-Based
+### ➤ SystemVerilog Class‑Based
 
 ```mermaid
 flowchart TB
@@ -56,55 +57,48 @@ flowchart TB
     DUT --> Interface --> Monitor --> Scoreboard
 ```
 
-### ➤ Cocotb (Python-Based)
+### ➤ Cocotb (Python‑Based)
 
 ```mermaid
 flowchart LR
-    Python[Test Generator (Python)] --> GPI
-    GPI --> Simulator[Verilog DUT]
+    Python["Test Generator (Python)"] --> GPI
+    GPI --> Simulator["Verilog DUT"]
     Simulator --> GPI
-    GPI --> Python[Self-Checker and Report Generator]
+    GPI --> Check["Self-Checking & Reporting"]
 ```
 
-- Python test routines drive and monitor the Verilog DUT  
-- Supports asynchronous reset, boundary testing, and functional scenarios  
-- Self-checking and logging integrated with Python
+- Python routines drive and monitor the HDL DUT  
+- Implements reset checks, boundary-value tests, and functional scenarios  
+- Generates logs and results automatically  
 
----
 
 ## 🧪 Test Cases
 
 ### 🔁 Reset Tests
-- ✅ Assert reset and confirm output `C = 0`
-- ✅ Release reset and confirm normal functionality resumes
+
+- ✅ Assert reset → expect `C = 0`  
+- ✅ Release reset → expect normal operation  
 
 ### ➕ Arithmetic Tests
 
-| Test Case            | A   | B   | Opcode | Expected Result |
-|----------------------|-----|-----|--------|-----------------|
-| MAXNEG + MAXNEG      | -8  | -8  | 00     | -16 (overflow)  |
-| MAXPOS + MAXNEG      | +7  | -8  | 00     | -1              |
-| Zero Subtraction     |  0  |  0  | 01     | 0               |
+| Test Case            | A   | B   | Opcode | Expected |
+|----------------------|:---:|:---:|:------:|:--------:|
+| MAXNEG + MAXNEG      | -8  | -8  | `00`   | -16 (overflow) |
+| MAXPOS + MAXNEG      | +7  | -8  | `00`   | -1         |
+| Zero Subtraction     | 0   | 0   | `01`   | 0          |
 
 ### 🧠 Logical Tests
-- ✅ Bitwise NOT with boundary values (`-8`, `+7`, `0`)
-- ✅ Reduction OR with all-zeros and various non-zero patterns
+
+- ✅ Bitwise NOT at boundaries (`-8`, `+7`, `0`)  
+- ✅ Reduction OR with all zeros and mixed bits  
 
 ---
 
 ## 🛠️ Tools Used
 
-- **Simulators:**  
-  - QuestaSim  
-  - Xcelium  
-
-- **Verification Frameworks:**  
-  - Cocotb (Python-based co-simulation)  
-  - SystemVerilog (UVM-like methodology)
-
-- **Development Environments:**  
-  - Visual Studio Code  
-  - EDA Playground  
+- **Simulators:** QuestaSim, Xcelium  
+- **Frameworks:** Cocotb (Python), SystemVerilog (UVM‑like)  
+- **Editors:** VS Code, EDA Playground  
 
 ---
 
@@ -113,17 +107,13 @@ flowchart LR
 ### ▶️ Cocotb Flow
 
 ```bash
-# Install Cocotb
 pip install cocotb
-
-# Run Cocotb tests using Makefile
 make SIM=questa
 ```
 
 ### ▶️ SystemVerilog Flow
 
 ```bash
-# Compile and simulate using QuestaSim
 vsim -do "run -all" tb_alu
 ```
 
@@ -131,22 +121,17 @@ vsim -do "run -all" tb_alu
 
 ## 📊 Verification Metrics
 
-- ✅ Error Counter: `0`  
-- ✅ Correct Operation Counter: All tests passed  
-- ✅ Boundary Coverage: **100% achieved**
+- ✅ Error counter: 0  
+- ✅ Correct operations: all passed  
+- ✅ Boundary coverage: **100%**  
 
 ---
 
 ## 🧩 Future Work
 
-- 🧪 **Functional Coverage:**  
-  Implement covergroups and cross coverage to measure scenario completeness.
-
-- 🔐 **Assertions:**  
-  Add SystemVerilog assertions to validate protocol behavior and detect illegal conditions.
-
-- 🧰 **CI Integration:**  
-  Future support for automated regression and continuous testing.
+- ⚙️ Add **functional coverage** to ensure opcode-input combinations are fully exercised  
+- 📌 Integrate **SystemVerilog assertions** for protocol and corner‑case checks  
+- 📈 Enhance automation in scoreboard checks and reporting  
 
 ---
 
@@ -160,4 +145,4 @@ vsim -do "run -all" tb_alu
 
 ## 📄 License
 
-This project is licensed under Analog Devices Inc, supervision for Summer 2025' Digital IC Design Internship
+This project is licensed under the MIT License – see the [LICENSE](LICENSE) file for details.
