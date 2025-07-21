@@ -14,6 +14,8 @@
 - [🛠️ Tools Used](#-tools-used)
 - [🚀 Getting Started](#-getting-started)
 - [📊 Verification Metrics](#-verification-metrics)
+- [🧩 Future Work](#-future-work)
+- [👤 Author](#-author)
 - [📄 License](#-license)
 
 ---
@@ -56,9 +58,17 @@ flowchart TB
 
 ### ➤ Cocotb (Python-Based)
 
-- Python-driven test generation  
-- Co-simulation with Verilog using GPI interface  
-- Self-checking via Python assertions  
+```mermaid
+flowchart LR
+    Python[Test Generator (Python)] --> GPI
+    GPI --> Simulator[Verilog DUT]
+    Simulator --> GPI
+    GPI --> Python[Self-Checking and Reporting]
+```
+
+- Uses Python test routines to drive and monitor the Verilog DUT
+- Supports asynchronous reset checks, boundary values, and functional scenarios
+- Generates logs and reports for result tracking
 
 ---
 
@@ -88,8 +98,8 @@ flowchart TB
   - QuestaSim  
   - Xcelium  
 
-- **Verification Languages & Libraries:**  
-  - Cocotb (Python-based)  
+- **Verification Frameworks:**  
+  - Cocotb (Python-based co-simulation)  
   - SystemVerilog (UVM-like methodology)
 
 - **Development Environments:**  
@@ -101,17 +111,19 @@ flowchart TB
 ## 🚀 Getting Started
 
 ### ▶️ Cocotb Flow
+
 ```bash
 # Install Cocotb
 pip install cocotb
 
-# Run Cocotb tests
+# Run Cocotb tests using Makefile
 make SIM=questa
 ```
 
 ### ▶️ SystemVerilog Flow
+
 ```bash
-# Run SystemVerilog testbench
+# Compile and simulate using QuestaSim
 vsim -do "run -all" tb_alu
 ```
 
@@ -121,10 +133,27 @@ vsim -do "run -all" tb_alu
 
 - ✅ Error Counter: `0`  
 - ✅ Correct Operations Counter: All Passed  
+- ✅ Boundary Coverage: **100% Achieved**
 - ✅ Code Coverage: **100% Achieved**
+
+---
+
+## 🧩 Future Work
+
+- 🔍 **Add functional coverage** to quantify verification completeness across opcode/input combinations  
+- ✅ **Integrate SystemVerilog assertions** to enforce protocol correctness and catch corner-case bugs early  
+- 📈 Improve scoreboard tracking and automation of pass/fail reporting
+
+---
+
+## 👤 Author
+
+**Khaled Ahmed Hamed**  
+- 💼 [LinkedIn](https://www.linkedin.com/in/eng-khaled-ahmed-hamed)  
+- 📧 khalid1422003123@gmail.com  
 
 ---
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under ADI Summer Internship
