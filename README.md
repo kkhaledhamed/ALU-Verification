@@ -1,4 +1,4 @@
-# 🔍 ALU Verification Project
+# 🔍 ALU Verification Project using differnt methodologies
 
 ![Verification](https://img.shields.io/badge/Verification-Cocotb%20%7C%20SystemVerilog-blue)  
 ![HDL](https://img.shields.io/badge/HDL-Verilog-orange)  
