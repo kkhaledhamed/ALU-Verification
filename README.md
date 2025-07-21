@@ -41,7 +41,7 @@
 | `00`   | Add           | A + B                      |
 | `01`   | Subtract      | A – B                      |
 | `10`   | Bitwise NOT   | ~A                         |
-| `11`   | Reduction OR  | OR all bits of B (`|B`)    |
+| `11`   | Reduction OR  | OR all bits of B           |
 
 ---
 
